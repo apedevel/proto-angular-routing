@@ -1,11 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule} from '@angular/router';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AppRoutes } from './app.routing';
+import { ApdvLoggerFactory } from './logging/apdv-logger-factory';
+import { ApdvLoggerFactoryService } from './logging/apdv-logger-factory.service';
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
-import { AppRoutes } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { AppRoutes } from './app.routing';
     RouterModule,
     AppRoutes,
   ],
-  providers: [],
+  providers: [
+    { provide: ApdvLoggerFactory, useClass: ApdvLoggerFactoryService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
